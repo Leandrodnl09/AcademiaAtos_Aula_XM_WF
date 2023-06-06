@@ -1,0 +1,160 @@
+// CALCULADORA SIMPLES
+// PAR OU IMPAR
+using System;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace AcademiaAtos_Mobile_App_XM
+{
+    public partial class App : Application
+    {
+        public App()
+        {
+            InitializeComponent();
+
+            MainPage = new AcademiaAtos_Mobile_App_XM.CalculadoraSimples();
+			// MainPage = new AcademiaAtos_Mobile_App_XM.ParOuImpar();
+        }
+
+        protected override void OnStart()
+        {
+        }
+
+        protected override void OnSleep()
+        {
+        }
+
+        protected override void OnResume()
+        {
+        }
+    }
+}
+
+//CALCULADORA SIMPLES
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace AcademiaAtos_Mobile_App_XM
+{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class CalculadoraSimples : ContentPage
+    {
+        public CalculadoraSimples()
+        {
+            InitializeComponent();
+        }
+
+        public void BtExecutar_Clicked(object sender, EventArgs e)
+        {
+            double a = 0, b = 0, t = 0;
+            a = Convert.ToDouble(etValorA.Text);
+            b = Convert.ToDouble(etValorB.Text);
+            Button bt = (Button)sender;
+
+            if (bt.Text == "+") 
+            {
+                t = a + b;
+            }
+            if (bt.Text == "-")
+            {
+                t = a - b;
+            }
+            if (bt.Text == "/")
+            {
+                t = a / b;
+            }
+            if (bt.Text == "*")
+            {
+                t = a * b;
+            }
+
+            lbResp.Text = t.ToString();
+        }
+    }
+}
+
+// CALCULADORA SIMPLES;
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AcademiaAtos_Mobile_App_XM.CalculadoraSimples">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Calculadora Simples" />
+            <Label Text="Valor A:" />
+            <Entry x:Name="etValorA" Keyboard="Numeric" Placeholder="Informe um numero:"/>
+            <Label Text="Valor B:"/>
+            <Entry x:Name="etValorB" Keyboard="Numeric" Placeholder="Informe um numero:"/>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="+" Clicked="BtExecutar_Clicked"/>
+                <Button Text="-" Clicked="BtExecutar_Clicked"/>
+                <Button Text="/" Clicked="BtExecutar_Clicked"/>
+                <Button Text="*" Clicked="BtExecutar_Clicked"/>
+            </StackLayout>
+            <StackLayout>
+                <Label x:Name="lbResp"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
+//////////////////////////////////////////////////////////////////////////////////
+
+// PAR OU IMPAR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace AcademiaAtos_Mobile_App_XM
+{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ParOuImpar : ContentPage
+    {
+        public ParOuImpar()
+        {
+            InitializeComponent();
+        }
+
+        public void BtExecutar_Clicked(object sender, EventArgs e)
+        {
+            int n = Convert.ToInt32(etValor.Text);
+            String resp = "O número " + etValor.Text + "é ";
+            if(n % 2 == 0)
+            {
+                resp += "par";
+            }
+            else
+            {
+                resp += "impar";
+            }
+            lbResp.Text = resp;
+        }
+    }
+}
+
+// PAR OU IMPAR;
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AcademiaAtos_Mobile_App_XM.ParOuImpar">
+  <ContentPage.Content>
+      <StackLayout>
+          <Label Text="Determine se o número é par ou impar!" />
+          <Entry x:Name="etValor"  Keyboard="Numeric" Placeholder="Informe um número:"/>
+          <Button x:Name="btnExecutar"  Text="Executar" Clicked="BtExecutar_Clicked"/>
+            <Label x:Name="lbResp"/>
+        </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
+
+
+

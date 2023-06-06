@@ -1,0 +1,87 @@
+// Exercicio Criar Email
+
+using System;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace AcademaAtos_Exercicio01_XM_App
+{
+    public partial class App : Application
+    {
+        public App()
+        {
+            InitializeComponent();
+
+            MainPage = new AcademaAtos_Exercicio01_XM_App.CriarEmail();
+        }
+
+        protected override void OnStart()
+        {
+        }
+
+        protected override void OnSleep()
+        {
+        }
+
+        protected override void OnResume()
+        {
+        }
+    }
+}
+
+
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AcademaAtos_Exercicio01_XM_App.CriarEmail">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Vamos criar um e-mail!" />
+            <Label Text="Digite seu nome: " />
+            <Entry x:Name="etNome" Keyboard="Text" Placeholder="Informe seu nome:"/>
+            <Label Text="Digite seu sobrenome:"/>
+            <Entry x:Name="etSobrenome" Keyboard="Text" Placeholder="Informe seu sobrenome:"/>
+            <StackLayout Orientation="Vertical">
+                <Button Text="Criar Email" Clicked="BtExecutar_Clicked"/>
+            </StackLayout>
+            <StackLayout>
+                <Label x:Name="lbResp" Margin="5" FontSize="20" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace AcademaAtos_Exercicio01_XM_App
+{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class CriarEmail : ContentPage
+    {
+        public CriarEmail()
+        {
+            InitializeComponent();
+        }
+
+        public void BtExecutar_Clicked(object sender, EventArgs e)
+        {
+            // Obtenha o nome e sobrenome digitados pelo usuário
+            string nome = etNome.Text;
+            string sobrenome = etSobrenome.Text;
+
+            // Crie o email com base no sobrenome primeiro, seguido de "_", seguido pelo nome, e por fim, adicione o sufixo
+            string email = $"{sobrenome.ToLower()}_{nome.ToLower()}@ufn.edu.br";
+
+            // Exiba o email criado no Label
+            lbResp.Text = email;
+        }
+    }
+}
+

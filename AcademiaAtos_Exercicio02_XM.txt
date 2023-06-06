@@ -1,0 +1,92 @@
+// Calculo IMC
+
+using System;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace AcademiaAtos_Exercicio02_XM_App
+{
+    public partial class App : Application
+    {
+        public App()
+        {
+            InitializeComponent();
+
+            MainPage = new AcademiaAtos_Exercicio02_XM_App.CalculoIMC();
+        }
+
+        protected override void OnStart()
+        {
+        }
+
+        protected override void OnSleep()
+        {
+        }
+
+        protected override void OnResume()
+        {
+        }
+    }
+}
+
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AcademiaAtos_Exercicio02_XM_App.CalculoIMC">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Label Text="Calculando IMC" HorizontalOptions="Center" FontSize="20" Margin="0,0,0,20"/>
+
+            <Label Text="Nome:" HorizontalOptions="Center"/>
+            <Entry x:Name="txtNome" Keyboard="Text" Placeholder="Informe seu nome completo:" HorizontalOptions="Center"/>
+
+            <Label Text="Idade:" HorizontalOptions="Center"/>
+            <Entry x:Name="etIdade" Keyboard="Numeric" Placeholder="Informe sua idade:" HorizontalOptions="Center"/>
+
+            <Label Text="Altura:" HorizontalOptions="Center"/>
+            <Entry x:Name="etAltura" Keyboard="Numeric" Placeholder="Informe sua altura:" HorizontalOptions="Center"/>
+
+            <Label Text="Peso:" HorizontalOptions="Center"/>
+            <Entry x:Name="etPeso" Keyboard="Numeric" Placeholder="Informe seu peso:" HorizontalOptions="Center"/>
+
+            <Button Text="Calcular IMC" Clicked="BtExecutar_Clicked" HorizontalOptions="Center" Margin="20"/>
+
+            <Label x:Name="lbResp" HorizontalOptions="Center" Margin="20" FontSize="22" TextColor="White"
+                   BackgroundColor="Black"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace AcademiaAtos_Exercicio02_XM_App
+{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class CalculoIMC : ContentPage
+    {
+        public CalculoIMC()
+        {
+            InitializeComponent();
+
+        }
+
+        private void BtExecutar_Clicked(object sender, EventArgs e)
+        {
+            string nome = txtNome.Text;
+            int idade = int.Parse(etIdade.Text);
+            double altura = double.Parse(etAltura.Text);
+            double peso = double.Parse(etPeso.Text);
+
+            double imc = peso / (altura * altura);
+
+            lbResp.Text = $"{nome}, {idade} anos, com altura {altura}m e peso {peso}kg tem o seguinte IMC: {imc:F2}";
+        }
+    }
+}
